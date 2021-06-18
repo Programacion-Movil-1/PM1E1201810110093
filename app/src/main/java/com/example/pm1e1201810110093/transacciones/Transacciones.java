@@ -17,7 +17,7 @@ public class Transacciones {
             "cp_Pais TEXT, " +
             "cp_Nombre TEXT, " +
             "cp_Telefono INTEGER," +
-            "cp_Nota TEXT, ");
+            "cp_Nota TEXT)";
 
     public static final String DropTableContactosPersonas = "DROP TABLE IF EXISTS tblContactosPersonas";
 
