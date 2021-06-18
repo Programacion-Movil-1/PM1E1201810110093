@@ -18,4 +18,9 @@ public class ListViewActivity extends AppCompatActivity {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
     }
+
+    public void irCallActivity (View view){
+        Intent i = new Intent(this, CallActivity.class);
+        startActivity(i);
+    }
 }
