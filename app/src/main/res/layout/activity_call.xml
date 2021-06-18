@@ -6,4 +6,57 @@
     android:layout_height="match_parent"
     tools:context=".CallActivity">
 
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <Button
+            android:id="@+id/btnVolverCall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="irMainActivity"
+            android:text="Volver" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="70dp" />
+
+        <TextView
+            android:id="@+id/lblNumeroCall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="+504 9758 5412"
+            android:textSize="34sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            app:srcCompat="@drawable/icono_de_contacto" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="110dp" />
+
+        <ImageView
+            android:id="@+id/btnLlamar"
+            android:layout_width="wrap_content"
+            android:layout_height="110dp"
+            android:onClick="irMainActivity"
+            app:srcCompat="@drawable/icono_de_llamada" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
