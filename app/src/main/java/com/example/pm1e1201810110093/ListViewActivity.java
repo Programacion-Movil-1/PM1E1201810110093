@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -119,7 +120,6 @@ public class ListViewActivity extends AppCompatActivity {
                 i.putExtra("Telefono", Telefono);
                 i.putExtra("Nota", Nota);
                 startActivity(i);
-                finish();
             }
         });
     }
@@ -147,6 +147,7 @@ public class ListViewActivity extends AppCompatActivity {
             listviewContactos.setCp_ID(cursor.getInt(0));
             listviewContactos.setCp_Nombre(cursor.getString(2));
             listviewContactos.setCp_Telefono(cursor.getString(3));
+            listviewContactos.setCp_Nota(cursor.getString(4));
             ArrayLista.add(listviewContactos);
         }
         cursor.close();
