@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        pais =(Spinner)findViewById(R.id.cmbPais);
+        pais = (Spinner)findViewById(R.id.cmbPais);
         nombre = (EditText) findViewById(R.id.txtNombre);
         telefono = (EditText) findViewById(R.id.txtNumero);
         nota = (EditText) findViewById(R.id.txtNota);
@@ -69,13 +69,13 @@ public class MainActivity extends AppCompatActivity {
     private void AgregarContacto() {
 
         try {
-            String sPais = pais.getSelectedItem().toString();
-            String sPaisText = sPais.substring(0, sPais.length() - 5);
-            String sPaisNumber = sPais.substring(sPais.length() - 4, sPais.length() - 1);
-
             SQLiteConexion conexion = new SQLiteConexion(this, Transacciones.NameDataBase, null, 1);
             SQLiteDatabase db = conexion.getWritableDatabase();
             ContentValues valores = new ContentValues();
+
+            String sPais = pais.getSelectedItem().toString();
+            String sPaisText = sPais.substring(0, sPais.length() - 6);
+            String sPaisNumber = sPais.substring(sPais.length() - 4, sPais.length() - 1);
 
             valores.put(Transacciones.cp_Pais, sPaisText);
             valores.put(Transacciones.cp_Nombre, nombre.getText().toString());
@@ -87,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
             db.close();
 
         } catch (Exception ex) {
-
             Toast.makeText(getApplicationContext(),"Se produjo un error",Toast.LENGTH_LONG).show();
         }
 

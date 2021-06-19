@@ -4,10 +4,12 @@ public class contactos {
     private Integer cp_ID;
     private String cp_Pais;
     private String cp_Nombre;
-    private Integer cp_Telefono;
+    private String cp_Telefono;
     private String cp_Nota;
 
-    public contactos(Integer cp_id, String cp_pais, String cp_nombre, Integer cp_telefono, String cp_nota) {
+    public contactos(){}
+
+    public contactos(Integer cp_id, String cp_pais, String cp_nombre, String cp_telefono, String cp_nota) {
         cp_ID = cp_id;
         cp_Pais = cp_pais;
         cp_Nombre = cp_nombre;
@@ -39,11 +41,11 @@ public class contactos {
         this.cp_Nombre = cp_Nombre;
     }
 
-    public Integer getCp_Telefono() {
+    public String getCp_Telefono() {
         return cp_Telefono;
     }
 
-    public void setCp_Telefono(Integer cp_Telefono) {
+    public void setCp_Telefono(String cp_Telefono) {
         this.cp_Telefono = cp_Telefono;
     }
 
