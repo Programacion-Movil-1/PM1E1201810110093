@@ -2,13 +2,17 @@ package com.example.pm1e1201810110093;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -25,6 +29,7 @@ public class ListViewActivity extends AppCompatActivity {
     ListView ListaContactos;
     ArrayList<contactos> ArrayLista;
     ArrayList<String> ArrayContactos;
+    private AlertDialog.Builder EliminarItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +40,7 @@ public class ListViewActivity extends AppCompatActivity {
         ListaContactos= (ListView) findViewById(R.id.ListContacts);
 
         ObtenerListaContactosPersonas();
-        ArrayAdapter adp = new ArrayAdapter(this, android.R.layout.simple_list_item_1, ArrayContactos);
+        ArrayAdapter<String> adp = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice, ArrayContactos);
         ListaContactos.setAdapter(adp);
 
         buscar.addTextChangedListener(new TextWatcher() {
@@ -50,6 +55,14 @@ public class ListViewActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+            }
+        });
+
+        ListaContactos.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        ListaContactos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long arg3) {
+                view.setSelected(true);
             }
         });
     }
