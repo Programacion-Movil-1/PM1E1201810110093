@@ -36,7 +36,9 @@ public class ListViewActivity extends AppCompatActivity {
     private static final int REQUEST_CALL = 1;
     private EditText mEditTextNumber;
     private String Dato;
+    private String Nombre;
     private String Telefono;
+    private String Nota;
 
     SQLiteConexion conexion;
     EditText buscar;
@@ -82,7 +84,9 @@ public class ListViewActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 view.setSelected(true);
                 Dato = ""+ArrayLista.get(position).getCp_ID();
+                Nombre = ""+ArrayLista.get(position).getCp_Nombre();
                 Telefono = "+"+ArrayLista.get(position).getCp_Telefono();
+                Nota = ""+ArrayLista.get(position).getCp_Nota();
             }
         });
 
@@ -112,13 +116,13 @@ public class ListViewActivity extends AppCompatActivity {
 
 
     public void irCallActivity (View view){
-
-        makePhoneCall();
-
-        /* irCallActivity es hacer la llamada
         Intent i = new Intent(this, CallActivity.class);
-        startActivity(i);*/
-
+        i.putExtra("ID", Dato);
+        i.putExtra("Nombre", Nombre);
+        i.putExtra("Telefono", Telefono);
+        i.putExtra("Nota", Nota);
+        startActivity(i);
+        finish();
     }
 
     private void ObtenerListaContactosPersonas() {
