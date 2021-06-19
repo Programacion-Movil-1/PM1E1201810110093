@@ -120,6 +120,7 @@ public class ListViewActivity extends AppCompatActivity {
                 i.putExtra("Telefono", Telefono);
                 i.putExtra("Nota", Nota);
                 startActivity(i);
+                finish();
             }
         });
     }

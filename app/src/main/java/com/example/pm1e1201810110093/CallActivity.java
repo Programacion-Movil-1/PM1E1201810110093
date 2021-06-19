@@ -24,6 +24,8 @@ public class CallActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call);
 
+        conexion= new SQLiteConexion(this, Transacciones.NameDataBase, null, 1);
+
         Intent i = getIntent();
         id  = getIntent().getExtras().getString("ID");
         String nombre  = getIntent().getExtras().getString("Nombre");
