@@ -57,6 +57,7 @@ public class ListViewActivity extends AppCompatActivity {
         mEditTextNumber = (EditText) findViewById(R.id.txtBusquedaLV);
         Button btnDelete = (Button) findViewById(R.id.btnEliminarLV);
         Button btnCall = (Button) findViewById(R.id.btnLlamarLV);
+        Button btnUpdate = (Button) findViewById(R.id.btnActualizarLV);
 
         ObtenerListaContactosPersonas();
 
@@ -106,6 +107,19 @@ public class ListViewActivity extends AppCompatActivity {
                 makePhoneCall();
             }
         });
+
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(this, CallActivity.class);
+                i.putExtra("ID", Dato);
+                i.putExtra("Nombre", Nombre);
+                i.putExtra("Telefono", Telefono);
+                i.putExtra("Nota", Nota);
+                startActivity(i);
+                finish();
+            }
+        });
     }
 
     public void irMainActivity (View view){
@@ -116,13 +130,7 @@ public class ListViewActivity extends AppCompatActivity {
 
 
     public void irCallActivity (View view){
-        Intent i = new Intent(this, CallActivity.class);
-        i.putExtra("ID", Dato);
-        i.putExtra("Nombre", Nombre);
-        i.putExtra("Telefono", Telefono);
-        i.putExtra("Nota", Nota);
-        startActivity(i);
-        finish();
+
     }
 
     private void ObtenerListaContactosPersonas() {
