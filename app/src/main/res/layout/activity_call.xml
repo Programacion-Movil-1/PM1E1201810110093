@@ -20,7 +20,7 @@
             android:layout_height="30dp" />
 
         <Button
-            android:id="@+id/btnVolverCall"
+            android:id="@+id/btnVolverUP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="irMainActivity"
@@ -31,32 +31,78 @@
             android:layout_height="70dp" />
 
         <TextView
-            android:id="@+id/lblNumeroCall"
+            android:id="@+id/lblTitleUP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="+504 9758 5412"
+            android:text="ACTUALIZACION DE DATOS"
             android:textSize="34sp" />
 
+        <TextView
+            android:id="@+id/lblNombreUP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal|left"
+            android:text="Nombre"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/txtNombreUP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Ingrese el Nombre"
+            android:inputType="textPersonName" />
+
         <Space
             android:layout_width="match_parent"
-            android:layout_height="40dp" />
+            android:layout_height="20dp" />
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="200dp"
-            app:srcCompat="@drawable/icono_de_contacto" />
+        <TextView
+            android:id="@+id/lblNumeroUP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Numero"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/txtNumeroUP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Ingrese el Numero"
+            android:inputType="number" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="110dp" />
+            android:layout_height="20dp" />
 
-        <ImageView
-            android:id="@+id/btnLlamar"
-            android:layout_width="wrap_content"
-            android:layout_height="110dp"
-            android:onClick="irMainActivity"
-            app:srcCompat="@drawable/icono_de_llamada" />
+        <TextView
+            android:id="@+id/lblNotaUP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nota"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/txtNotaUP"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Ingrese una nota"
+            android:inputType="textMultiLine" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <Button
+            android:id="@+id/btnsalvar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Actualizar Contacto"
+            android:textSize="12sp" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
