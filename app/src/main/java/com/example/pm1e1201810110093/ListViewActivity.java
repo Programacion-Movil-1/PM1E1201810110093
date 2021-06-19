@@ -20,6 +20,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -32,6 +33,7 @@ import java.util.ArrayList;
 public class ListViewActivity extends AppCompatActivity {
     private static final int REQUEST_CALL = 1;
     private EditText mEditTextNumber;
+    private String Dato;
 
     SQLiteConexion conexion;
     EditText buscar;
@@ -48,7 +50,7 @@ public class ListViewActivity extends AppCompatActivity {
         buscar = (EditText) findViewById(R.id.txtBusquedaLV);
         ListaContactos= (ListView) findViewById(R.id.ListContacts);
         mEditTextNumber = (EditText) findViewById(R.id.txtBusquedaLV);
-
+        Button btnDelete = (Button) findViewById(R.id.btnEliminarLV);
 
         ObtenerListaContactosPersonas();
 
@@ -73,8 +75,19 @@ public class ListViewActivity extends AppCompatActivity {
         ListaContactos.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         ListaContactos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long arg3) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 view.setSelected(true);
+                Dato = ""+ArrayLista.get(position).getCp_ID();
+            }
+        });
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                eliminar();
+                Intent i = new Intent(ListViewActivity.this, ListViewActivity.class);
+                startActivity(i);
+                finish();
             }
         });
     }
@@ -83,6 +96,8 @@ public class ListViewActivity extends AppCompatActivity {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
     }
+
+
 
     public void irCallActivity (View view){
 
@@ -122,6 +137,15 @@ public class ListViewActivity extends AppCompatActivity {
                     +ArrayLista.get(i).getCp_Telefono());
         }
     }
+
+    private void eliminar() {
+        SQLiteDatabase db = conexion.getWritableDatabase();
+        String []  params = {Dato};
+        String wherecond = Transacciones.cp_ID + "=?";
+        db.delete(Transacciones.tblContactosPersonas, wherecond, params);
+        Toast.makeText(getApplicationContext(),"Dato eliminado", Toast.LENGTH_LONG).show();
+    }
+
     private void makePhoneCall() {
         String number = mEditTextNumber.getText().toString();
         if (number.trim().length() > 0){
