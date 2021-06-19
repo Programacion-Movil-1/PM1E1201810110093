@@ -39,6 +39,7 @@ public class ListViewActivity extends AppCompatActivity {
     private String Nombre;
     private String Telefono;
     private String Nota;
+    private Boolean SelectedRow=false;
 
     SQLiteConexion conexion;
     EditText buscar;
@@ -88,6 +89,7 @@ public class ListViewActivity extends AppCompatActivity {
                 Nombre = ""+ArrayLista.get(position).getCp_Nombre();
                 Telefono = "+"+ArrayLista.get(position).getCp_Telefono();
                 Nota = ""+ArrayLista.get(position).getCp_Nota();
+                SelectedRow = true;
             }
         });
 
@@ -111,7 +113,7 @@ public class ListViewActivity extends AppCompatActivity {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(this, CallActivity.class);
+                Intent i = new Intent(getApplicationContext(), CallActivity.class);
                 i.putExtra("ID", Dato);
                 i.putExtra("Nombre", Nombre);
                 i.putExtra("Telefono", Telefono);
@@ -172,7 +174,7 @@ public class ListViewActivity extends AppCompatActivity {
 
     private void makePhoneCall() {
         String number = Telefono;
-        if (number.trim().length() > 0){
+        if (SelectedRow==true){
             if(ContextCompat.checkSelfPermission(ListViewActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
                 ActivityCompat.requestPermissions(ListViewActivity.this,
                         new String[] {Manifest.permission.CALL_PHONE}, REQUEST_CALL);
@@ -182,7 +184,7 @@ public class ListViewActivity extends AppCompatActivity {
             }
         }
         else{
-            Toast.makeText(ListViewActivity.this, "Ingrese un Numero Telefonico", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ListViewActivity.this, "Seleccione un contacto", Toast.LENGTH_SHORT).show();
         }
     }
 
