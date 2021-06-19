@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -23,6 +24,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pm1e1201810110093.tablas.contactos;
@@ -34,6 +36,7 @@ public class ListViewActivity extends AppCompatActivity {
     private static final int REQUEST_CALL = 1;
     private EditText mEditTextNumber;
     private String Dato;
+    private String Telefono;
 
     SQLiteConexion conexion;
     EditText buscar;
@@ -51,6 +54,7 @@ public class ListViewActivity extends AppCompatActivity {
         ListaContactos= (ListView) findViewById(R.id.ListContacts);
         mEditTextNumber = (EditText) findViewById(R.id.txtBusquedaLV);
         Button btnDelete = (Button) findViewById(R.id.btnEliminarLV);
+        Button btnCall = (Button) findViewById(R.id.btnLlamarLV);
 
         ObtenerListaContactosPersonas();
 
@@ -78,6 +82,7 @@ public class ListViewActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 view.setSelected(true);
                 Dato = ""+ArrayLista.get(position).getCp_ID();
+                Telefono = "+"+ArrayLista.get(position).getCp_Telefono();
             }
         });
 
@@ -88,6 +93,13 @@ public class ListViewActivity extends AppCompatActivity {
                 Intent i = new Intent(ListViewActivity.this, ListViewActivity.class);
                 startActivity(i);
                 finish();
+            }
+        });
+
+        btnCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                makePhoneCall();
             }
         });
     }
@@ -147,7 +159,7 @@ public class ListViewActivity extends AppCompatActivity {
     }
 
     private void makePhoneCall() {
-        String number = mEditTextNumber.getText().toString();
+        String number = Telefono;
         if (number.trim().length() > 0){
             if(ContextCompat.checkSelfPermission(ListViewActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
                 ActivityCompat.requestPermissions(ListViewActivity.this,
