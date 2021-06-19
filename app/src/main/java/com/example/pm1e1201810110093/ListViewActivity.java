@@ -40,6 +40,7 @@ public class ListViewActivity extends AppCompatActivity {
         ListaContactos= (ListView) findViewById(R.id.ListContacts);
 
         ObtenerListaContactosPersonas();
+
         ArrayAdapter<String> adp = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice, ArrayContactos);
         ListaContactos.setAdapter(adp);
 
@@ -86,6 +87,7 @@ public class ListViewActivity extends AppCompatActivity {
 
         while (cursor.moveToNext()){
             listviewContactos = new contactos();
+            listviewContactos.setCp_ID(cursor.getInt(0));
             listviewContactos.setCp_Nombre(cursor.getString(2));
             listviewContactos.setCp_Telefono(cursor.getString(3));
             ArrayLista.add(listviewContactos);
