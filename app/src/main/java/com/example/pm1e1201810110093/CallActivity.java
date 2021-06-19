@@ -40,10 +40,7 @@ public class CallActivity extends AppCompatActivity {
         nom.setText(nombre);
         tel.setText(telefono);
         not.setText(nota);
-
-        Toast.makeText(getApplicationContext(),"Dato actualizados" + id, Toast.LENGTH_LONG).show();
-
-
+        
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

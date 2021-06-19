@@ -97,30 +97,81 @@ public class ListViewActivity extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                eliminar();
-                Intent i = new Intent(ListViewActivity.this, ListViewActivity.class);
-                startActivity(i);
-                finish();
+                if (SelectedRow==true) {
+                    AlertDialog.Builder builder= new AlertDialog.Builder(ListViewActivity.this);
+                    builder.setMessage("Desea eliminar a "+ Nombre);
+                    builder.setTitle("Eliminar");
+
+                    builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            eliminar();
+                            Intent intent = new Intent(ListViewActivity.this, ListViewActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+
+                    builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                        }
+                    });
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+                else {
+                    Toast.makeText(ListViewActivity.this, "Seleccione un contacto", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         btnCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                makePhoneCall();
+                if (SelectedRow==true){
+                    AlertDialog.Builder builder= new AlertDialog.Builder(ListViewActivity.this);
+                    builder.setMessage("Desea llamar a "+ Nombre);
+                    builder.setTitle("Llamar");
+
+                    builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            makePhoneCall();
+                        }
+                    });
+
+                    builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                        }
+                    });
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+                else {
+                    Toast.makeText(ListViewActivity.this, "Seleccione un contacto", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), CallActivity.class);
-                i.putExtra("ID", Dato);
-                i.putExtra("Nombre", Nombre);
-                i.putExtra("Telefono", Telefono);
-                i.putExtra("Nota", Nota);
-                startActivity(i);
-                finish();
+                if (SelectedRow==true){
+                    Intent i = new Intent(getApplicationContext(), CallActivity.class);
+                    i.putExtra("ID", Dato);
+                    i.putExtra("Nombre", Nombre);
+                    i.putExtra("Telefono", Telefono);
+                    i.putExtra("Nota", Nota);
+                    startActivity(i);
+                    finish();
+                }
+                else {
+                    Toast.makeText(ListViewActivity.this, "Seleccione un contacto", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

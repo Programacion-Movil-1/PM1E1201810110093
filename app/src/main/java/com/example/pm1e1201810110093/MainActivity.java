@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         for(int i=0; i<Fields.length; i++) {
             String string = Fields[i].getText().toString();
             if(string.trim().isEmpty()) {
-                Fields[i].setError("Campo vacio");
+                // Fields[i].setError("Campo vacio");
                 return true;
             }
         }
